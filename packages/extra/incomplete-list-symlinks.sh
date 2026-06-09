@@ -1,5 +1,5 @@
 #!/bin/bash
-VER=1.3
+VER=1.31
 #--[ Info ]-----------------------------------------------------
 #
 # Put in crontab:
@@ -94,9 +94,10 @@ do
             # Check for completion status
             comp="$(ls -1 "$target/" 2>/dev/null | grep -i "$releaseComplete" | head -1)"
             percent="$(echo "$comp" | awk '{for(i=1;i<=NF;i++) if($i~/^[0-9]+%$/){print $i; exit}}')"
+            nfo_count="$(ls -1 "$target"/*.nfo 2>/dev/null | wc -l)"
             to_link=""
 
-            if [[ -n "$percent" && "$percent" != "100%" ]]
+            if [[ -n "$percent" ]]
             then
 
                 echo "$secname: ${secrel} is $percent complete."

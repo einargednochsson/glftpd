@@ -1,5 +1,5 @@
 #!/bin/bash
-VER=1.31
+VER=1.32
 #--[ Info ]-----------------------------------------------------
 #
 # Put in crontab:
@@ -250,10 +250,9 @@ do
 
 			# Pre-calc to avoid repeated find calls
 			dir_old_count="$(find "$target" -maxdepth 0 -type d -mmin +"$minutes" 2>/dev/null | wc -l)"
-			nfo_count="$(find "$target" -maxdepth 1 -type f -iname "*.nfo" 2>/dev/null | wc -l)"
-			
+			nfo_count="$(ls -1 "$target"/*.nfo 2>/dev/null | wc -l)"
 
-			if [[ -n "$percent" && "$percent" != "100%" ]]
+			if [[ -n "$percent" ]]
 			then
 			
 				echo "$secname: ${secrel} is $percent complete."

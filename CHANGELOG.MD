@@ -14,6 +14,7 @@
 
 - lockfile wasn't properly working in tmdb-symlink-maker
 - tmdb-symlink-maker didn't have the proper regex for handling genres
+- incomplete-list, incomplete-list-nuker, incomplete-list-symlinks didn't handle releases with 100% incomplete tag and incomplete-list lacked a variable for checking nfo's
 
 ## 12.1 - 2026-01-27
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-VER=1.3
+VER=1.31
 #--[ Settings ]-------------------------------------------------
 
 glroot=/glftpd
@@ -76,8 +76,9 @@ do
             # Check for completion status
             comp="$(ls -1 "$target/" 2>/dev/null | grep -i "$releaseComplete" | head -1)"
             percent="$(echo "$comp" | awk '{for(i=1;i<=NF;i++) if($i~/^[0-9]+%$/){print $i; exit}}')"
+            nfo_count="$(ls -1 "$target"/*.nfo 2>/dev/null | wc -l)"
 
-            if [[ -n "$percent" && "$percent" != "100%" ]]
+            if [[ -n "$percent" ]]
             then
 
                 echo "$secname:${red} ${secrel}${reset}${grey} is${red} $percent ${grey}complete.${reset}"
