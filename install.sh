@@ -2029,7 +2029,7 @@ glftpd()
         systemctl daemon-reload && systemctl restart glftpd.socket
 
     fi
-
+    
 }
 
 ## EGGDROP
@@ -2354,7 +2354,8 @@ pzsng()
     cp ../core/ngBot.vars $glroot/sitebot/scripts/pzs-ng
     cp -f ../core/sitewho.conf $glroot/bin
     rm -f $glroot/sitebot/scripts/pzs-ng/ngBot.conf.dist
-
+    cp -f scripts/libcopy/libcopy.sh $glroot
+    
     print_status_done
 }
 
@@ -2671,6 +2672,10 @@ cleanup()
     # Install rescan fix script and add cron job
     cp packages/extra/rescan_fix.sh "$glroot/bin"
     add_cron_job "*/2 * * * *" "$glroot/bin/rescan_fix.sh"
+    
+    # Ensuring all relevant libs are copied to $glroot/lib
+    $glroot/libcopy.sh >/dev/null 2>&1
+    
 }
 
 requirements
